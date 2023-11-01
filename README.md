@@ -1,2 +1,2 @@
 # prime
-prime!! (~uωu~)
+prime!! (\~uωu\~)
