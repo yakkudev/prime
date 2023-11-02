@@ -4,7 +4,17 @@ using UnityEngine.Tilemaps;
 
 public class BuildSystem : MonoBehaviour
 {
-    
+
+    public static BuildSystem i;
+    void Awake() {
+        if (i != null) {
+            Debug.LogWarning("More than one instance of BuildSystem found!");
+            Destroy(this);
+            return;
+        }
+
+        i = this;
+    }    
     public GameObject[] buildings;
 
     public Tilemap groundTilemap;
@@ -115,12 +125,16 @@ public class BuildSystem : MonoBehaviour
         throw new NotImplementedException();
     }
 
-    private void BuildSeed()
-    {
+    private void BuildSeed() {
         groundTilemap.GetTile(gameCursorPos);
         if (groundTilemap.GetTile(gameCursorPos) == TileManager.i.farmTile) {
-            overlayTilemap.SetTile(gameCursorPos, TileManager.i.seedTile);
+            CropManager.i.CreateCrop<Carrot>(gameCursorPos);
         }
+    }
+
+    public void UpdateCrop(Crop crop) {
+        // Add to tilemap
+        overlayTilemap.SetTile(crop.position, crop.tiles[crop.growthStage]);
     }
 
     private void BuildFarm() {

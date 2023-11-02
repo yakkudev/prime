@@ -19,5 +19,10 @@ public class TileManager : MonoBehaviour
     public TileBase farmTile;
     public TileBase seedTile;
 
+    public Tile carrotTile0;
+    public Tile carrotTile1;
+    public Tile carrotTile2;
+    public Tile carrotTile3;
+
 
 }
