@@ -1,9 +1,11 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class CropManager : MonoBehaviour {
     public static CropManager i;
+    List<Crop> crops = new();
     void Awake() {
         if (i != null) {
             Debug.LogWarning("More than one instance of CropManager found!");
@@ -12,12 +14,21 @@ public class CropManager : MonoBehaviour {
         }
 
         i = this;
-    }    
 
-    List<Crop> crops = new();
+        StartCoroutine(Tick());
+    }
+
+    IEnumerator Tick() {
+        while (true) {
+            yield return new WaitForSeconds(1f);
+            DryAll();
+            GrowAll();
+        }
+    }
+
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.G)) {
+        if (Input.GetKey(KeyCode.L)) {
             GrowAll();
             print(crops.Count);
         }
@@ -51,12 +62,29 @@ public class CropManager : MonoBehaviour {
         return null;
     }
 
+    public List<Crop> GetCropsInRange(Vector3Int position, float radius) {
+        List<Crop> cropsInRange = new();
+        foreach (Crop crop in crops) {
+            if (Vector3.Distance(position, crop.position) <= radius) {
+                cropsInRange.Add(crop);
+            }
+        }
+
+        return cropsInRange;
+    }
+
     public void AddCrop(Crop crop) {
         crops.Add(crop);
     }
 
     public void RemoveCrop(Crop crop) {
         crops.Remove(crop);
+    }
+
+    public void DryAll() {
+        foreach (Crop crop in crops) {
+            crop.Dry();
+        }
     }
 
     public void GrowAll() {

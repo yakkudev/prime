@@ -16,7 +16,8 @@ public class Carrot : Crop {
     }
 
     public override void Grow() {
-        growthTime += 10;
+        if (waterLevel <= 0) return;
+        growthTime ++;
         for (int i = 0; i < GrowthTimes.Length; i++) {
             if (growthTime >= GrowthTimes[i]) {
                 growthStage = i;
@@ -26,8 +27,26 @@ public class Carrot : Crop {
         BuildSystem.i.UpdateCrop(this);
     }
 
+    public override void TryWater() {
+        // 1/3 chance to water  
+        if (Random.Range(0, 3) == 0) {
+            Water();
+        }
+    }
+
     public override void Water() {
-        throw new System.NotImplementedException();
+        waterLevel += 6;
+        if (waterLevel > waterLevelMax) {
+            waterLevel = waterLevelMax;
+        }
+        BuildSystem.i.UpdateCrop(this);
+    }
+
+    public override void Dry() {
+        // 1/2 chance to dry
+        if (Random.Range(0, 2) == 0) {
+            waterLevel -= 1;
+        }
     }
 
     public override void Harvest() {

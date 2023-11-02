@@ -16,10 +16,11 @@ public class TileManager : MonoBehaviour
         i = this;
     }
 
-    public TileBase farmTile;
-    public TileBase seedTile;
+    public TileBase[] grassTiles;
 
-    public Tile[] carrotTiles = new Tile[4];
+    public TileBase[] farmTiles;
+
+    public Tile[] carrotTiles;
 
 
 }

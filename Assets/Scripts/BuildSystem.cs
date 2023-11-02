@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -106,19 +107,7 @@ public class BuildSystem : MonoBehaviour
                 BuildFertilizer();
                 break; 
         }
-
-            // // Check if tile is empty
-            // if (tile == null) {
-            //     // Get building index
-            //     int index = Random.Range(0, buildings.Length);
-
-            //     // Get building
-            //     GameObject building = buildings[index];
-
-            //     // Instantiate building
-            //     Instantiate(building, tilePos, Quaternion.identity);
-            // }
-        }
+    }
 
     private void BuildFertilizer()
     {
@@ -127,22 +116,44 @@ public class BuildSystem : MonoBehaviour
 
     private void BuildSeed() {
         groundTilemap.GetTile(gameCursorPos);
-        if (groundTilemap.GetTile(gameCursorPos) == TileManager.i.farmTile) {
+        if (TileManager.i.farmTiles.Contains(groundTilemap.GetTile(gameCursorPos))) {
             CropManager.i.CreateCrop<Carrot>(gameCursorPos);
         }
     }
 
     public void UpdateCrop(Crop crop) {
-        // Add to tilemap
+        // Change growth stage
         overlayTilemap.SetTile(crop.position, crop.tiles[crop.growthStage]);
+
+        // Change water level
+        if (crop.waterLevel > 20) {
+            groundTilemap.SetTile(crop.position, TileManager.i.farmTiles[1]);
+        } else {
+            groundTilemap.SetTile(crop.position, TileManager.i.farmTiles[0]);
+        } /* zabije sie */
     }
 
     private void BuildFarm() {
-        groundTilemap.SetTile(gameCursorPos, TileManager.i.farmTile);
+        // Check if tile is contained in grass tiles
+        if (!TileManager.i.grassTiles.Contains(groundTilemap.GetTile(gameCursorPos))) return;
+        groundTilemap.SetTile(gameCursorPos, TileManager.i.farmTiles[0]);
     }
 
-    private void BuildMachines()
-    {
-        throw new NotImplementedException();
+    private void BuildMachines() {
+        // Check if tile is empty
+        if (!TileManager.i.grassTiles.Contains(groundTilemap.GetTile(gameCursorPos))) {
+            Debug.LogWarning("Machines can only be built on grass tiles");
+            return;
+        }
+
+        // Get building index
+        int index = 0;
+
+        // Get building
+        GameObject building = buildings[index];
+
+        // Instantiate building
+        var s = Instantiate(building, gameCursorPos, Quaternion.identity);
+
     }
 }

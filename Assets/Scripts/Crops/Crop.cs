@@ -23,6 +23,8 @@ public abstract class Crop {
 
     public abstract void Grow();
     public abstract void Water();
+    public abstract void TryWater();
+    public abstract void Dry();
     public abstract void Harvest();
     public abstract void Destroy();
 }
