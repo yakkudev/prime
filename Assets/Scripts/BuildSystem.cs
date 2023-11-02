@@ -7,11 +7,11 @@ public class BuildSystem : MonoBehaviour
     
     public GameObject[] buildings;
 
-    public Tilemap tilemap;
+    public Tilemap groundTilemap;
+    public Tilemap overlayTilemap;
+    public Tilemap buildingTilemap;
 
     public GameObject highlight;
-
-    public TileBase farmlandTile;
 
     Camera cam;
 
@@ -33,7 +33,7 @@ public class BuildSystem : MonoBehaviour
         Vector3 mouse = cam.ScreenToWorldPoint(Input.mousePosition);
 
         // Get tile position
-        Vector3Int v = tilemap.WorldToCell(mouse);
+        Vector3Int v = groundTilemap.WorldToCell(mouse);
 
         gameCursorPos = v;
         // offset the highlight
@@ -45,6 +45,40 @@ public class BuildSystem : MonoBehaviour
         if (currentMode == BuildMode.NONE) return;
 
         MoveHighlight();
+
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            SetMode(BuildMode.NONE);
+            return;
+        }
+
+        /* to do wyjebania pozniej */
+
+        if (Input.GetKeyDown(KeyCode.Z)) {
+            SetMode(BuildMode.BUILD_FARM);
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.X)) {
+            SetMode(BuildMode.BUILD_SEED);
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.C)) {
+            SetMode(BuildMode.BUILD_FERTILIZER);
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.V)) {
+            SetMode(BuildMode.BUILD_WATER);
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.B)) {
+            SetMode(BuildMode.BUILD_MACHINES);
+            return;
+        }
+
+        /* pieklo */
 
         if (!Input.GetMouseButtonDown(0)) return;
         
@@ -83,11 +117,14 @@ public class BuildSystem : MonoBehaviour
 
     private void BuildSeed()
     {
-        throw new NotImplementedException();
+        groundTilemap.GetTile(gameCursorPos);
+        if (groundTilemap.GetTile(gameCursorPos) == TileManager.i.farmTile) {
+            overlayTilemap.SetTile(gameCursorPos, TileManager.i.seedTile);
+        }
     }
 
     private void BuildFarm() {
-        tilemap.SetTile(gameCursorPos, TileManager.i.farmTile);
+        groundTilemap.SetTile(gameCursorPos, TileManager.i.farmTile);
     }
 
     private void BuildMachines()
