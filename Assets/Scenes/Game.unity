@@ -3502,10 +3502,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   farmTile: {fileID: 11400000, guid: 48b369d5f31a16c43b0c7591f3c6772f, type: 2}
   seedTile: {fileID: 11400000, guid: 2f3853050774ec146bc226d7e22326e2, type: 2}
-  carrotTile0: {fileID: 11400000, guid: 2f3853050774ec146bc226d7e22326e2, type: 2}
-  carrotTile1: {fileID: 11400000, guid: d8a7413d1ea612f4db47f906052d8159, type: 2}
-  carrotTile2: {fileID: 11400000, guid: bc9f1a5c296464343b1579cf32782ce2, type: 2}
-  carrotTile3: {fileID: 11400000, guid: 82778ec4608027c418689e4ac021c922, type: 2}
+  carrotTiles:
+  - {fileID: 11400000, guid: 2f3853050774ec146bc226d7e22326e2, type: 2}
+  - {fileID: 11400000, guid: d8a7413d1ea612f4db47f906052d8159, type: 2}
+  - {fileID: 11400000, guid: bc9f1a5c296464343b1579cf32782ce2, type: 2}
+  - {fileID: 11400000, guid: 82778ec4608027c418689e4ac021c922, type: 2}
 --- !u!1 &2039338195
 GameObject:
   m_ObjectHideFlags: 0

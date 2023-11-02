@@ -8,10 +8,10 @@ public class Carrot : Crop {
         growthTimeMax = GrowthTimes[growthStage];
         waterLevelMax = 100;
         tiles = new TileBase[] {
-            TileManager.i.carrotTile0,
-            TileManager.i.carrotTile1,
-            TileManager.i.carrotTile2,
-            TileManager.i.carrotTile3
+            TileManager.i.carrotTiles[0],
+            TileManager.i.carrotTiles[1],
+            TileManager.i.carrotTiles[2],
+            TileManager.i.carrotTiles[3]
         };
     }
 
