@@ -27,20 +27,24 @@ using UnityEngine.EventSystems;
 
         private void Interact()
         {
-            RefreshInteractionTypes.RefreshInteractions();
+        Debug.Log("budynek2");
+        if(RefreshInteractionTypes != null) RefreshInteractionTypes.RefreshInteractions();
 
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (!Physics.Raycast(ray, out var hit, 100)) return;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            //Debug.Log("hit" + hit.transform.name + " " + EventSystem.current.IsPointerOverGameObject());
+            if (!Physics.Raycast(ray, out var hit)) return;
 
-            if (!hit.transform.TryGetComponent(out Item hitItem) || EventSystem.current.IsPointerOverGameObject()) return;
+        //Debug.Log("hit" + hit.transform.name + " " + EventSystem.current.IsPointerOverGameObject());
+        Debug.Log("budynek3");
+        if (!hit.transform.TryGetComponent(out Item hitItem) || EventSystem.current.IsPointerOverGameObject()) return;
             if (hitItem.isBuilding)
                 Interaction(this, this, hitItem, hitItem);
-        }
+                Debug.Log("budynek4");
+    }
         public void Interaction(Item handItem, InteractionData handItemData, Item structure, InteractionData structureData)
         {
+        if (structure.gameObject.CompareTag("building")) Debug.Log("budynek");
             structure.RefreshInteractionTypes.RefreshInteractions();
             for (int i = 0; i < handItem.interactionTypes.Length; i++)
             {

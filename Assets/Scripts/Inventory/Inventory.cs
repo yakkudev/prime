@@ -19,10 +19,10 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         InventoryManager.playerInventory = this;
-        inventoryUI = InventoryManager.inventoryUI;
+        inventoryUI = GameObject.Find("InventoryPanelUI").GetComponent<InventoryUI>();
 
-/*        hotbarItems[_equippedItemIndex].isEquipped = true;
-        hotbarItems[_equippedItemIndex].gameObject.SetActive(true);*/
+        /*        hotbarItems[_equippedItemIndex].isEquipped = true;
+                hotbarItems[_equippedItemIndex].gameObject.SetActive(true);*/
 
         /*inventoryUI.ChangeActiveItemInHotbar(_equippedItemIndex, -1);*/
         ChangeItem(0);
@@ -31,6 +31,7 @@ public class Inventory : MonoBehaviour
             if (hotbarItems[i] != null)
             {
                 hotbarItems[i].gameObject.SetActive(false);
+                Debug.Log(inventoryUI == null);
                 inventoryUI.ChangeHotbarIcons(i, hotbarItems[i].icon);
                 hotbarItems[i].isEquipped = false;
             }
@@ -105,7 +106,7 @@ public class Inventory : MonoBehaviour
         itemToTakeOut.gameObject.SetActive(true);
 
         _equippedItemIndex = index;
-        inventoryUI.ChangeActiveItemInHotbar(_equippedItemIndex, indexToHide);
+        //inventoryUI.ChangeActiveItemInHotbar(_equippedItemIndex, indexToHide);
         Debug.Log("Changed item to " + itemToTakeOut.name);
 
     }
@@ -126,6 +127,7 @@ public class Inventory : MonoBehaviour
 
         if (listFrom == hotbarItems)
         {
+            Debug.Log(indexFrom);
             inventoryUI.ChangeHotbarIcons(indexFrom, null);
         }
 

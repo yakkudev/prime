@@ -1,11 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
+    public Sprite notActiveHotbar;
+    public Sprite activeHotbar;
+
     [SerializeField] Transform hotbarGrid;
     [SerializeField] Transform backpackGrid;
 
@@ -30,7 +31,11 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] TMP_Text[] hotbarNumbers;
     // Additional GUI
     GameObject additionalGUI;
+    private void Awake()
+    {
+        InventoryManager.inventoryUI = this;
 
+    }
     void Start()
     {
         InventoryManager.inventoryUI = this;
@@ -64,7 +69,7 @@ public class InventoryUI : MonoBehaviour
 
     public void ChangeHotbarIcons(int index, Sprite icon)
     {
-        hotbarImages[index].sprite = icon;
+        //hotbarImages[index].sprite = icon;
     }
 
     public void ChangeActiveItemInHotbar(int indexToTurnOn, int indexToTurnOff)
@@ -78,8 +83,17 @@ public class InventoryUI : MonoBehaviour
 
             indexToTurnOff = 0;
         }
-        hotbarNumbers[indexToTurnOff].color = Color.white;
-        hotbarNumbers[indexToTurnOn].color = Color.yellow;
+/*        if(indexToTurnOff != -1)
+        {
+            Debug.Log(indexToTurnOff);
+            hotbarNumbers[indexToTurnOff].gameObject.GetComponent<Image>().sprite = notActiveHotbar;
+
+        }
+        if (indexToTurnOff != -1)
+        {
+            hotbarNumbers[indexToTurnOn].gameObject.GetComponent<Image>().sprite = notActiveHotbar;
+
+        }*/
     }
 
     void CloseInventory()
@@ -131,6 +145,7 @@ public class InventoryUI : MonoBehaviour
 
     public void RefreshMoney()
     {
+        playerInventory = GameObject.Find("Player").GetComponent<Inventory>();
         moneyText.text = playerInventory.money + "$";
     }
     void RefreshInventory()

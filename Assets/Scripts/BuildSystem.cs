@@ -24,7 +24,7 @@ public class BuildSystem : MonoBehaviour
 
     public GameObject highlight;
 
-    Camera cam;
+    public Camera cam;
 
     public Vector3Int gameCursorPos;
     public BuildMode currentMode = BuildMode.NONE;

@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6726353339832322463
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1758601842182165430}
+  - component: {fileID: 4876170357710565825}
+  m_Layer: 0
+  m_Name: Carrot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1758601842182165430
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6726353339832322463}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 387.70648, y: 148.33673, z: -4.336454}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4876170357710565825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6726353339832322463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d95e468fa74e6404b9345fb3bfe6dde1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxWaterAmount: 0
+  waterAmount: 0
+  seed: {fileID: 0}
+  maxFertilizerAmount: 0
+  fertilizerAmount: 0
+  isPlowed: 0
+  storageName: 
+  itemsInStorage: []
+  additionalGUI: {fileID: 0}
+  icon: {fileID: 0}
+  itemName: Carrot
+  description: 
+  isEquipped: 0
+  maxStackSize: 1
+  stackSize: 1
+  isBuilding: 0
+  index: 0
+  listWhereItemIs: []
+  interactionTypes: 
