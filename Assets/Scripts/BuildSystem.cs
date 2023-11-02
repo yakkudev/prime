@@ -29,6 +29,8 @@ public class BuildSystem : MonoBehaviour
     public Vector3Int gameCursorPos;
     public BuildMode currentMode = BuildMode.NONE;
 
+    public int rotation;
+
 
     public void SetMode(BuildMode mode) {
         currentMode = mode;
@@ -75,7 +77,7 @@ public class BuildSystem : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.C)) {
-            SetMode(BuildMode.BUILD_FERTILIZER);
+            SetMode(BuildMode.BUILD_BELT);
             return;
         }
 
@@ -86,6 +88,11 @@ public class BuildSystem : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.B)) {
             SetMode(BuildMode.BUILD_MACHINES);
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.R)) {
+            rotation = (rotation + 1) % 4;
             return;
         }
 
@@ -103,15 +110,15 @@ public class BuildSystem : MonoBehaviour
             case BuildMode.BUILD_SEED:
                 BuildSeed();
                 break;
-            case BuildMode.BUILD_FERTILIZER:
-                BuildFertilizer();
+            case BuildMode.BUILD_BELT:
+                BuildBelt(0);
                 break; 
         }
     }
 
-    private void BuildFertilizer()
-    {
-        throw new NotImplementedException();
+    private void RotateTile(Vector3Int pos, int rot, Tilemap tilemap) {
+        Matrix4x4 matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.Euler(0f, 0f, 90f*rot), Vector3.one);
+        tilemap.SetTransformMatrix(new Vector3Int(0, 0, 0), matrix);
     }
 
     private void BuildSeed() {
@@ -156,4 +163,33 @@ public class BuildSystem : MonoBehaviour
         var s = Instantiate(building, gameCursorPos, Quaternion.identity);
 
     }
+
+    public void UpdateBelt (Belt belt) {
+        // Change growth stage
+        buildingTilemap.SetTile(belt.position, belt.tiles[0]);
+    }
+
+    private void BuildBelt(int rotation) {
+        // Check if tile is empty
+        if (!TileManager.i.grassTiles.Contains(groundTilemap.GetTile(gameCursorPos))) {
+            Debug.LogWarning("Machines can only be built on grass tiles");
+            return;
+        }
+
+        // Get building index
+        int index = 1;
+
+        // Get building
+        GameObject building = buildings[index];
+
+        // Instantiate building
+        var s = Instantiate(building, gameCursorPos, Quaternion.Euler(0f, 0f, 90f*rotation));
+
+        // Set tile underneath to belt tile
+        buildingTilemap.SetTile(gameCursorPos, TileManager.i.beltTiles[0]);
+        
+        // Rotate tile
+        RotateTile(gameCursorPos, rotation, buildingTilemap);
+    }
+
 }

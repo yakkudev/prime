@@ -3436,6 +3436,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1584768108
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1584768110}
+  - component: {fileID: 1584768109}
+  m_Layer: 0
+  m_Name: BeltManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1584768109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584768108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3704020d979c7454c83d9382a6931e4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testItem: {fileID: 5114255908944802952, guid: 738789290f301df4b8cf316f96d3b94a, type: 3}
+--- !u!4 &1584768110
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584768108}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1605252047
 GameObject:
   m_ObjectHideFlags: 0
@@ -3468,12 +3513,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildings:
   - {fileID: 6256734522074547344, guid: 2afc8553080525e48b4af2b31ebc8091, type: 3}
+  - {fileID: 970691099651859196, guid: 27c97676e6c1dce4f9f5cfcb1e0b6f31, type: 3}
   groundTilemap: {fileID: 852275746}
   overlayTilemap: {fileID: 597296622}
   buildingTilemap: {fileID: 1015430302}
   highlight: {fileID: 1118345482}
   gameCursorPos: {x: 0, y: 0, z: 0}
   currentMode: 0
+  rotation: 0
 --- !u!4 &1605252049
 Transform:
   m_ObjectHideFlags: 0
@@ -3512,6 +3559,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 32527d0049cb20948af6f49fd9c69622, type: 2}
   - {fileID: 11400000, guid: bc9f1a5c296464343b1579cf32782ce2, type: 2}
   - {fileID: 11400000, guid: 82778ec4608027c418689e4ac021c922, type: 2}
+  beltTiles:
+  - {fileID: 11400000, guid: 60d7a67380687f941b3bf0a447e7089b, type: 2}
+  - {fileID: 11400000, guid: a0ed9609ea66438419478c3f9bbd32ef, type: 2}
 --- !u!1 &2039338195
 GameObject:
   m_ObjectHideFlags: 0
@@ -3569,3 +3619,4 @@ SceneRoots:
   - {fileID: 1118345484}
   - {fileID: 1605252049}
   - {fileID: 471671485}
+  - {fileID: 1584768110}

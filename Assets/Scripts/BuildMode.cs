@@ -4,6 +4,6 @@ public enum BuildMode {
     BUILD_MACHINES,
     BUILD_FARM,
     BUILD_SEED,
-    BUILD_FERTILIZER,
+    BUILD_BELT,
     BUILD_WATER,
 }

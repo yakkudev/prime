@@ -22,5 +22,7 @@ public class TileManager : MonoBehaviour
 
     public Tile[] carrotTiles;
 
+    public AnimatedTile[] beltTiles;
+
 
 }
