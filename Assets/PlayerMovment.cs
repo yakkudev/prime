@@ -9,13 +9,18 @@ public class PlayerMovment : MonoBehaviour
     float yAxis;
     Vector3 movement;
     public Rigidbody2D rb;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+
+    public Sprite front;
+    public Sprite back;
+    public Sprite side;
+
+    public SpriteRenderer spriteRenderer;
+
+    private void Start() {
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         xAxis = Input.GetAxis("Horizontal");
@@ -27,5 +32,29 @@ public class PlayerMovment : MonoBehaviour
         }
         movement = (xAxis * transform.right) + (yAxis * transform.up);
         rb.velocity = movement * speed;
+
+        // If the player is moving up
+        if (yAxis > 0)
+        {
+            spriteRenderer.sprite = back;
+        }
+        // If the player is moving down
+        else if (yAxis < 0)
+        {
+            spriteRenderer.sprite = front;
+        }
+        // If the player is moving left
+        else if (xAxis < 0)
+        {
+            spriteRenderer.sprite = side;
+            spriteRenderer.flipX = true;
+        }
+        // If the player is moving right
+        else if (xAxis > 0)
+        {
+            spriteRenderer.sprite = side;
+            spriteRenderer.flipX = false;
+        }
+
     }
 }
