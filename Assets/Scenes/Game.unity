@@ -3518,6 +3518,7 @@ MonoBehaviour:
   overlayTilemap: {fileID: 597296622}
   buildingTilemap: {fileID: 1015430302}
   highlight: {fileID: 1118345482}
+  cam: {fileID: 0}
   gameCursorPos: {x: 0, y: 0, z: 0}
   currentMode: 0
   rotation: 0
